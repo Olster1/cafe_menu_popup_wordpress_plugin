@@ -1,11 +1,11 @@
 <?php
    /*
    Plugin Name: cafe menu pdf uploader
-   Plugin URI: http://my-awesomeness-emporium.com
-   Description: a plugin to create awesomeness and spread joy
-   Version: 1.2
-   Author: Mr. Awesome
-   Author URI: http://mrtotallyawesome.com
+   Plugin URI: http://edgeeffectmedia.com
+   Description: a plugin to upload a cafe/restaurant menu and view it as a modal popup
+   Version: 1.0
+   Author: Oliver Marsh
+   Author URI: http://edgeeffectmedia.com
    License: GPL2
    */
 
