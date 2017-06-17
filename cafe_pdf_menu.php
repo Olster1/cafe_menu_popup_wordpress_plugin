@@ -10,17 +10,17 @@
    */
 
 
-   function enqueue_styles() {
+   function register_styles() {
     
-    wp_enqueue_style( plugin_dir_path( __FILE__ ), plugin_dir_url( __FILE__ ) . 'css/styles.css', array(), 090617, 'all' );
+    wp_register_style( "cafe-modal-menu-css", plugin_dir_url( __FILE__ ) . 'css/styles.css', array(), 090617, 'all' );
 
    }
-   add_action( 'wp_enqueue_scripts', 'enqueue_styles' );
+   add_action( 'wp_enqueue_scripts', 'register_styles' );
 
-   function enqueue_scripts() {
-    wp_enqueue_script( plugin_dir_path( __FILE__ ), plugin_dir_url( __FILE__ ) . 'js/modal_menu.js', array(), 090617, false ); 
+   function register_scripts() {
+    wp_register_script( "cafe-modal-menu-js", plugin_dir_url( __FILE__ ) . 'js/modal_menu.js', array(), 090617, true ); 
    }
-   add_action( 'wp_enqueue_scripts', 'enqueue_scripts' );
+   add_action( 'wp_enqueue_scripts', 'register_scripts' );
 
    add_action('admin_menu', 'test_plugin_setup_menu');
     
@@ -184,17 +184,18 @@ function backend_ajax() {
   }
 }
 
+register_uninstall_hook( __FILE__, 'plugin_uninstall' );
+ 
+function plugin_uninstall(){
+    delete_option('cafe_menu_image_folder_url');
+    delete_option('cafe_menu_image_number');
+}
+
 add_shortcode("cafe_menu_popup", "shortcode_output");
 
 function shortcode_output() {
-
-  // $a = shortcode_atts(array('id'=>'-1'), $atts);
-  // // No ID value
-  // if(strcmp($a['id'], '-1') == 0){
-  //         return "";
-  // }
-  // $pdf=$a['id'];
-  // $url=plugin_dir_url(__FILE__)."output/".$pdf."/".$pdf."/index.html";
+  wp_enqueue_style('cafe-modal-menu-css');
+  wp_enqueue_script('cafe-modal-menu-js');
 
    ?>
   <button id='myBtn'>Open Menu</button>
